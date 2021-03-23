@@ -1,0 +1,14 @@
+<br><br>
+<%= select_tag "from_code", options_from_collection_for_select(Airport.all, "code", :code) %>
+
+<%= select_tag "to_code", options_from_collection_for_select(Airport.all, "code", :code) %>
+
+<select name="" id="">
+  <option value="" selected="selected"># of Passengers</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+</select>
+
+<%= select_tag "start_time", options_from_collection_for_select(Flight.get_start_times, 'start_time', :start_time_formatted) %>
