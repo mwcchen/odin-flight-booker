@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 airports = Airport.create([{ code: "SFO" }, { code: "NYC" }])
-flights = Flight.create([{ start_airport_id: airports.first.id, finish_airport_id: airports.last.id, start_time: DateTime.now, flight_duration: 123456 }])
+flights = Flight.create([{ start_airport_id: airports.first.id, finish_airport_id: airports.last.id, start_time: DateTime.now, flight_duration: 123456 }, { start_airport_id: airports.last.id, finish_airport_id: airports.first.id, start_time: DateTime.now, flight_duration: 123456 }])

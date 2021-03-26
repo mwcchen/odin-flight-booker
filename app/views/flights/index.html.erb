@@ -1,14 +1,21 @@
 <br><br>
-<%= select_tag "from_code", options_from_collection_for_select(Airport.all, "code", :code) %>
 
-<%= select_tag "to_code", options_from_collection_for_select(Airport.all, "code", :code) %>
+<%= form_with url: :root, method: :get do |form| %>
+  <%= form.select "from_code", options_from_collection_for_select(Airport.all, "code", :code) %>
 
-<select name="" id="">
-  <option value="" selected="selected"># of Passengers</option>
-  <option value="1">1</option>
-  <option value="2">2</option>
-  <option value="3">3</option>
-  <option value="4">4</option>
-</select>
+  <%= form.select "to_code", options_from_collection_for_select(Airport.all, "code", :code) %>
 
-<%= select_tag "start_time", options_from_collection_for_select(Flight.get_start_times, 'start_time', :start_time_formatted) %>
+  <%= form.select :num_tickets, [["1"], ["2"], ["3"], ["4"]] %>
+
+  <%= form.select "date", Flight.get_dates %>
+
+  <%= form.submit "Search" %>
+<% end %>
+
+<% if params.has_key?(:date) %>
+  <%= form_with url: "/", method: :get do |form| %>
+    <%= form.collection_radio_buttons(:id, @search_res, :id, :details)%>
+
+    <%= form.submit "Select" %>
+  <% end %>
+<% end %>
