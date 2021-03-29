@@ -13,9 +13,13 @@
 <% end %>
 
 <% if params.has_key?(:date) %>
-  <%= form_with url: "/", method: :get do |form| %>
-    <%= form.collection_radio_buttons(:id, @search_res, :id, :details)%>
-
-    <%= form.submit "Select" %>
+  <% if @search_res.present? %>
+    <%= form_with url: "bookings/new", method: :get do |form| %>
+      <%= form.collection_radio_buttons(:flight_id, @search_res, :id, :details)%>
+      <br>
+      <%= form.submit "Select" %>
+    <% end %>
+  <% else %>
+    No results found
   <% end %>
 <% end %>
