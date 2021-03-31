@@ -1,0 +1,13 @@
+<%= form_with model: @booking do |form| %>
+  <% @booking.passengers.each do |passenger| %>
+    <%= form.fields_for passenger, index: passenger.id do |passenger_form| %>
+      <%= passenger_form.label :name %>
+      <%= passenger_form.text_field :name %>
+      <br>
+      <%= passenger_form.label :email %>
+      <%= passenger_form.text_field :email %>
+      <br>
+    <% end %>
+    <br>
+  <% end %>
+<% end %>

@@ -12,14 +12,13 @@
   <%= form.submit "Search" %>
 <% end %>
 
-<% if params.has_key?(:date) %>
-  <% if @search_res.present? %>
-    <%= form_with url: "bookings/new", method: :get do |form| %>
-      <%= form.collection_radio_buttons(:flight_id, @search_res, :id, :details)%>
-      <br>
-      <%= form.submit "Select" %>
-    <% end %>
-  <% else %>
-    No results found
+<% if @search_res %>
+  <%= form_with url: "bookings/new", method: :get do |form| %>
+    <%= hidden_field_tag(:num_tickets, params[:num_tickets]) %>
+    <%= form.collection_radio_buttons(:flight_id, @search_res, :id, :details)%>
+    <br>
+    <%= form.submit "Select" %>
   <% end %>
+<% else %>
+  No results found
 <% end %>
