@@ -5,20 +5,22 @@
 
   <%= form.select "to_code", options_from_collection_for_select(Airport.all, "code", :code) %>
 
-  <%= form.select :num_tickets, [["1"], ["2"], ["3"], ["4"]] %>
+  <%= form.select :num_tickets, [[1], [2], [3], [4]] %>
 
   <%= form.select "date", Flight.get_dates %>
 
   <%= form.submit "Search" %>
 <% end %>
 
-<% if @search_res %>
-  <%= form_with url: "bookings/new", method: :get do |form| %>
-    <%= hidden_field_tag(:num_tickets, params[:num_tickets]) %>
-    <%= form.collection_radio_buttons(:flight_id, @search_res, :id, :details)%>
-    <br>
-    <%= form.submit "Select" %>
+<% if params.has_key?(:num_tickets) %>
+  <% if @search_res.present? %>
+    <%= form_with url: "bookings/new", method: :get do |form| %>
+      <%= hidden_field_tag(:num_tickets, params[:num_tickets]) %>
+      <%= form.collection_radio_buttons(:flight_id, @search_res, :id, :details, {}, {required: true})%>
+      <br>
+      <%= form.submit "Select" %>
+    <% end %>
+  <% else %>
+    No results found
   <% end %>
-<% else %>
-  No results found
 <% end %>
