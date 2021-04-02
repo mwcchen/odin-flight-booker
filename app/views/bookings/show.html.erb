@@ -1,0 +1,8 @@
+<%= @booking.flight.details %>
+<br>
+<% @booking.passengers.each.with_index do |passenger, index| %>
+  Passenger #<%= index %><br>
+  <%= passenger.name %>,
+  <%= passenger.email %>
+  <br>
+<% end %>
