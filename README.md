@@ -1,24 +1,7 @@
-# README
+Project for practising advanced form building from http://www.theodinproject.com
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Notable concepts I encountered here:
+  - Populating form options using a collection
+  - Creating nested forms
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Deployed on Heroku here: https://afternoon-crag-29233.herokuapp.com/
