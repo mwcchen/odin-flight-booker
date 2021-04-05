@@ -1,8 +1,6 @@
-<%= @booking.flight.details %>
-<br>
-<% @booking.passengers.each.with_index do |passenger, index| %>
+<%= @booking.flight.details %><br><br>
+<% @booking.passengers.each.with_index(1) do |passenger, index| %>
   Passenger #<%= index %><br>
-  <%= passenger.name %>,
-  <%= passenger.email %>
-  <br>
+  Name: <%= passenger.name %><br>
+  Email: <%= passenger.email %><br><br>
 <% end %>

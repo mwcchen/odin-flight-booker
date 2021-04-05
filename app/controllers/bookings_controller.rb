@@ -1,12 +1,13 @@
 class BookingsController < ApplicationController
   def new
     @booking = Booking.new
+    @flight = Flight.find(params[:flight_id])
     Integer(params[:num_tickets]).times{ @booking.passengers.build }
   end
 
   def create
-    flight = Flight.find(params[:flight_id])
-    @booking = flight.bookings.build(booking_params)
+    @flight = Flight.find(params[:flight_id])
+    @booking = @flight.bookings.build(booking_params)
     if @booking.save
       redirect_to @booking
     else

@@ -6,10 +6,6 @@ class Flight < ApplicationRecord
   has_many :bookings
   has_many :passengers, through: :bookings
 
-  def self.get_dates
-    dates = Flight.distinct.pluck("date(start_time)")
-  end
-
   def details
     "Flight ID Code: #{id},
     From: #{from_airport.code},

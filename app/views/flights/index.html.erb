@@ -1,26 +1,17 @@
-<br><br>
-
 <%= form_with url: :root, method: :get do |form| %>
-  <%= form.select "from_code", options_from_collection_for_select(Airport.all, "code", :code) %>
-
-  <%= form.select "to_code", options_from_collection_for_select(Airport.all, "code", :code) %>
-
-  <%= form.select :num_tickets, [[1], [2], [3], [4]] %>
-
-  <%= form.select "date", Flight.get_dates %>
-
+  <%= form.select :from_code, @airports %>
+  <%= form.select :to_code, @airports %>
+  <%= form.select :num_tickets, (1..4) %>
+  <%= form.select :date, @dates %>
   <%= form.submit "Search" %>
 <% end %>
 
-<% if params.has_key?(:num_tickets) %>
-  <% if @search_res.present? %>
-    <%= form_with url: "bookings/new", method: :get do |form| %>
-      <%= hidden_field_tag(:num_tickets, params[:num_tickets]) %>
-      <%= form.collection_radio_buttons(:flight_id, @search_res, :id, :details, {}, {required: true})%>
-      <br>
-      <%= form.submit "Select" %>
-    <% end %>
-  <% else %>
-    No results found
+<% if @search_res.present? %>
+  <%= form_with url: new_booking_url, method: :get do |form| %>
+    <%= hidden_field_tag :num_tickets, params[:num_tickets] %>
+    <%= form.collection_radio_buttons :flight_id, @search_res, :id, :details, {}, { required: true }%><br>
+    <%= form.submit "Select" %>
   <% end %>
+<% elsif params[:commit] == "Search" %>
+  No results found
 <% end %>

@@ -1,12 +1,12 @@
-<%= form_with model: @booking do |form| %>
+<%= @flight.details %><br><br>
+<%= form_for @booking do |form| %>
   <%= form.fields_for :passengers do |passenger_form| %>
-    <%= hidden_field_tag(:flight_id, params[:flight_id]) %>
+    Passenger #<%= passenger_form.index + 1 %><br>
+    <%= hidden_field_tag :flight_id, params[:flight_id] %>
     <%= passenger_form.label :name, :required => true %>
-    <%= passenger_form.text_field :name, :required => true %>
-    <br>
+    <%= passenger_form.text_field :name, :required => true %><br>
     <%= passenger_form.label :email, :required => true %>
-    <%= passenger_form.text_field :email, :required => true %>
-    <br><br>
+    <%= passenger_form.text_field :email, :required => true %><br><br>
   <% end %>
   <%= form.submit "Submit" %>
 <% end %>
